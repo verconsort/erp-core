@@ -1,0 +1,33 @@
+erp-core/
+├── docker-compose.yml          # 容器化编排（PostgreSQL + Node.js 运行时）
+├── Dockerfile                          # 应用容器构建文件
+├── package.json                     # 依赖管理（Express/Fastify + pg 等）
+├── .env.example                    # 环境变量模板
+├── .gitignore
+├── README.md
+│
+├── src/                        # 源码根目录
+│   ├── index.js             # [内核入口] 启动引导、挂载中间件与插件
+│   │
+│   ├── core/                   # 🔴 核心底层（就像 Linux Kernel，业务无关，只管基础设施与生命周期）
+│   │   ├── database.js         # PostgreSQL 连接池管理与通用查询封装
+│   │   ├── error.handler.js    # 全局统一异常拦截与错误码规范
+│   │   ├── logger.js             # 统一日志记录器
+│   │   └── loader.js             # 插件/模块动态扫描与挂载机制（核心扩展点）
+│   │
+│   ├── shared/                     # 🟡 公共基建（所有业务模块共享的原子能力）
+│   │   ├── middlewares/        # 通用中间件（鉴权、请求日志、租户识别等）
+│   │   ├── utils/                    # 通用工具函数（雪花ID生成器、日期格式化等）
+│   │   └── base.model.js       # 通用单据模型基类（定义“主表 + 明细行”的通用操作）
+│   │
+│   ├── modules/           # 🟢 业务/行业核心基础模块
+│   │    ├──org               # 组织
+│   │    ├──fund             # 资金
+│   │    ├──item              # 物拼
+│   │    ├── service          # 服务
+│   │    ├── partner         # 往来
+│   │    ├── warehouse    # 仓库
+│   │    └── system
+│   └── industry      # 🟢 业务/行业[高一层入口]
+└── config/                     # 配置文件目录
+    └── init.sql                # 数据库初始化脚本（自动建表、多租户、基础权限表）

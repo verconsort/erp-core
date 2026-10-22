@@ -1,0 +1,13 @@
+{
+  "name": "erp-core",
+  "version": "1.0.0",
+  "description": "A micro-kernel open-source enterprise business platform",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "pg": "^8.11.3"
+  }
+}
